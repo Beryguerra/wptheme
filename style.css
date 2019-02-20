@@ -3,5 +3,16 @@ Theme Name: Test Theme
 Author: Bruno Guerra
 */
 
+body {
+    background: red;
+}
 
+header {
+    background: #fff;
+    width: 100%;
+    height: 100px;
+}
 
+.navigation {
+
+}

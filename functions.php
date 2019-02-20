@@ -24,24 +24,19 @@ add_action('wp_enqueue_scripts', 'load_stylesheet');//faz a funcao load_styleshe
 /*   ******************************************************************************************************    */ 
 
 //enqueing Jquery absolutamente necessario
+function load_jquery()
+{
+wp_register_script('customscripts', get_template_directory_uri() . '/js/jquery-3.3.1.min.js', array('jquery'), '1.0.0', true);
+wp_enqueue_script('customscripts');
+}
 
-function load_jquery(){
-
-
-    wp_deregister_script('jquery');
-    wp_enqueue_script('jquery', get_template_directory_uri() . '/js/jquery-3.3.1.min.js','', 1, true);
-
+add_action('wp_enqueue_scripts', 'load_jquery');
     /*
-    => wp_dequeue_script('jquery'); primeiro desregistramos Jquery pois o WP ja pode ter um....
-    => wp_enqueue_script('jquery' nome do ficheiro
+    => wp_enqueue_script('customscripts' nome do ficheiro
     =>  get_template_directory_uri() . '/js/jquery-3.3.1.min.js', localizacao do ficheiro
-    => 1 versao
+    => 1.0.0 versao
     => true para ir no footer, false para nao ir no footer
     */
-    add_action('wp_enqueue_scripts', 'jquery');
-}
-add_action('wp_enqueue_scripts', 'load_jquery');
-
 
 /*   ******************************************************************************************************    */
 
@@ -61,3 +56,18 @@ function loadjs(){
     */ 
 }
 add_action('wp_enqueue_scripts', 'loadjs');
+
+/******************************************************************************************************* */
+
+//Show nav bar
+
+add_theme_support('menus');
+
+register_nav_menus(//para registar o nome dos menus
+    array(
+
+        'top-menu' => __('Top menu', 'theme'),//adiciona a tick box de adicionar o menu no top
+        'footer-menu' => __('Footer menu', 'theme'),//adiciona a tick box de adicionar o menu no footer
+
+    )
+);
